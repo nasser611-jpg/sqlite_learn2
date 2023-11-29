@@ -42,6 +42,7 @@ class DbHelper {
 
   Future<List<Map<String, dynamic>>> getAllCourses() async {
     Database db = await createDatabase();
+  
     return db.query("courses");
   }
 

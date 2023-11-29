@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqlite_learn2/DbHelper.dart';
+import 'package:sqlite_learn2/bloc/course_bloc.dart';
 import 'package:sqlite_learn2/model/course.dart';
 
 class Newcorse extends StatefulWidget {
@@ -75,22 +77,27 @@ class _NewcorseState extends State<Newcorse> {
                 });
               },
             ),
-            TextButton(
-                onPressed: () async {
-                  Course c = Course({
-                    'name': courseName,
-                    'content': courseConetent,
-                    'hours': courHouse
-                  });
-                  int id = await db.createCourse(c);
-                  setState(() {
+            BlocBuilder<CourseBloc, CourseState>(
+              builder: (context, state) {
+      
+                return TextButton(
+                    onPressed: () async {
+                      Course c = Course({
+                        'name': courseName,
+                        'content': courseConetent,
+                        'hours': courHouse
+                      });
+                     db.createCourse(c);
+                  //    BlocProvider.of<CourseBloc>(context).emit(SuccessState(c));
                     
-                  });
-                  print('id:$id');
 
-                  Navigator.of(context).pop();
-                },
-                child: Text('Save'))
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Save'));
+           
+                
+                }
+            )
           ],
         )),
       ),
