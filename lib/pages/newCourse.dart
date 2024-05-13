@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqlite_learn2/DbHelper.dart';
 import 'package:sqlite_learn2/bloc/course_bloc.dart';
 import 'package:sqlite_learn2/model/course.dart';
+import 'package:sqlite_learn2/pages/home.dart';
 
 class Newcorse extends StatefulWidget {
   const Newcorse({Key? key}) : super(key: key);
@@ -91,7 +92,9 @@ class _NewcorseState extends State<Newcorse> {
                   //    BlocProvider.of<CourseBloc>(context).emit(SuccessState(c));
                     
 
-                      Navigator.of(context).pop();
+                     Navigator.push(context, MaterialPageRoute(builder: (context) {
+                       return Home();
+                     },));
                     },
                     child: Text('Save'));
            
