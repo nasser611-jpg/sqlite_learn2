@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqlite_learn2/DbHelper.dart';
+import 'package:sqlite_learn2/pages/home.dart';
 import 'package:sqlite_learn2/model/course.dart';
 
 class Update extends StatefulWidget {
@@ -62,7 +63,9 @@ class _UpdateState extends State<Update> {
                     'hours': int.parse(hourCOntroller.text)
                   });
                   widget.db.update(updatedCourse);
-                  Navigator.of(context).pop();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                       return Home();
+                     },));
                   });
              
                 },
